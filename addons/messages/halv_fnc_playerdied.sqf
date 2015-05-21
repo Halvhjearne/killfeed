@@ -2,7 +2,7 @@
 	a3 epoch killfeed server function
 	By Halv
 */
-
+#include "settings.sqf";
 private "_weapon";
 _player = _this select 0;
 _killer = _this select 1;
@@ -95,7 +95,7 @@ if(_killer != _player && (vehicle _killer) != (vehicle _player))then{
 		_message = format["%1 was killed by %2 with %3 from %4m",_victimName, _killerName, _txt, _distance];
 		_loc_message = format["[KillFeed]: PKILL: %1 was killed by %2 with %3 from %4m", _victimName, _killerName, _weapon, _distance];
 	}else{
-		if(HALV_KillFeed_AI)then{
+		if(_HALV_KillFeed_AI)then{
 			//killer is not a player
 			_killerType = typeOf _killer;
 			if(gettext (configFile >> 'CfgVehicles' >> _killerType >> 'displayName') != "")then{
@@ -140,9 +140,9 @@ diag_log _loc_message;
 		};
 	};
 }forEach[
-	[HALV_KillFeedhint,["hint", _hint]],[HALV_KillFeedhintSilent,["hintSilent", _hint]],[HALV_KillFeedsystemChat,["systemChat", _message]],
-	[HALV_KillFeeddynamictext,["dynamictext", _dyntxt]],[HALV_KillFeedsideChat,["sideChat", _message, _killer]],
-	[HALV_KillFeedglobalChat,["globalChat", _message, _killer]],[HALV_KillFeedcutText,["cutText", [_message, "PLAIN DOWN"]]],
-	[HALV_KillFeedtitleText,["titleText", [_message, "PLAIN DOWN"]]]
+	[_HALV_KillFeedhint,["hint", _hint]],[_HALV_KillFeedhintSilent,["hintSilent", _hint]],[_HALV_KillFeedsystemChat,["systemChat", _message]],
+	[_HALV_KillFeeddynamictext,["dynamictext", _dyntxt]],[_HALV_KillFeedsideChat,["sideChat", _message, _killer]],
+	[_HALV_KillFeedglobalChat,["globalChat", _message, _killer]],[_HALV_KillFeedcutText,["cutText", [_message, "PLAIN DOWN"]]],
+	[_HALV_KillFeedtitleText,["titleText", [_message, "PLAIN DOWN"]]]
 ];
 
