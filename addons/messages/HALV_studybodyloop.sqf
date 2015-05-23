@@ -1,6 +1,15 @@
+/*
+	a3 epoch killfeed studybody loop
+	By Halv
+*/
+
 #include "settings.sqf";
 
-player addEventHandler ["HandleDamage",{(_this select 0) setVariable ["HALVWTD",(_this select 1),true];(_this select 2)}];
+/*
+	//disabled for now, since it does not work with most antihacks, add this in run.sqf or security_checks.h for handle damage:
+	//(_this select 0) setVariable ['HALVWTD',(_this select 1),true];
+	player addEventHandler ["HandleDamage",{(_this select 0) setVariable ["HALVWTD",(_this select 1),true];(_this select 2)}];
+*/
 
 _HALV_studyaction = -1;
 

@@ -1,3 +1,8 @@
+/*
+	a3 epoch killfeed studybody script
+	By Halv
+*/
+
 _body = _this select 3;
 
 _info = _body getVariable ["HALV_STUDY",[]];
