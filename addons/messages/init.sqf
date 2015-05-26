@@ -20,7 +20,7 @@ if (hasInterface) then {
 	waitUntil {!dialog};
 	sleep 4;
 	enableRadio true;
-	if(_enablestudybody)then{
+	if(_enablestudybody || _enableburybody)then{
 		[] execVM (_folder + "HALV_studybodyloop.sqf");
 	}
 };

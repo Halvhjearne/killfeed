@@ -14,3 +14,5 @@ _HALV_KillFeed_AI			= true;
 //=======================================
 
 _enablestudybody = true;
+
+_enableburybody = true;
