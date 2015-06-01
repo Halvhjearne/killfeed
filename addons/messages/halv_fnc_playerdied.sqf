@@ -102,7 +102,7 @@ if(_killer != _player && (vehicle _killer) != (vehicle _player))then{
 				_killerName = gettext (configFile >> 'CfgVehicles' >> _killerType >> 'displayName');
 			};
 			if(_killerName == "Error: No vehicle")then{
-				_nearsappers = nearestObjects [_player,["Epoch_Sapper_F", "Epoch_SapperB_F"],5];
+				_nearsappers = nearestObjects [_player,["Epoch_Sapper_F", "Epoch_SapperB_F"],7.5];
 				if(count _nearsappers > 0)then{
 					_nearestsapper = _nearsappers select 0;
 					_killerName = gettext (configFile >> 'CfgVehicles' >> (typeOf _nearestsapper) >> 'displayName');
