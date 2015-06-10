@@ -23,7 +23,8 @@ _position = getPosATL _corpse;
 _direction = getDir _corpse;
 
 _info = _corpse getVariable ["HALV_STUDY",[]];
-_victimName = if(_info isEqualTo [])then{"Unknown"}else{_info select 1};
+if(_info isEqualTo [])exitWith{titletext["Cant bury ai ...", "PLAIN DOWN"];}
+_victimName = _info select 1;
 
 _list = [];
 {
