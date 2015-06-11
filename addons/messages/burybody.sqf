@@ -21,7 +21,7 @@ _position = getPosATL _corpse;
 _direction = getDir _corpse;
 
 _info = _corpse getVariable ["HALV_STUDY",[]];
-if(_info isEqualTo [])exitWith{titletext["Cant bury ai ...", "PLAIN DOWN"];}
+if(_info isEqualTo [])exitWith{titletext["Cant bury ai ...", "PLAIN DOWN"];};
 _victimName = _info select 1;
 
 player playMove "AinvPknlMstpSlayWrflDnon_medic";
