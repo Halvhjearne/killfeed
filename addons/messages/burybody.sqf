@@ -17,14 +17,14 @@ if(({isPlayer _x} count (getPos vehicle player nearEntities [["AllVehicles"], 5]
 	titletext["ANTI-DUPE!\nCant bury body with another player within 5 meters","PLAIN DOWN"];
 };
 
-player playMove "AinvPknlMstpSlayWrflDnon_medic";
-
 _position = getPosATL _corpse;
 _direction = getDir _corpse;
 
 _info = _corpse getVariable ["HALV_STUDY",[]];
 if(_info isEqualTo [])exitWith{titletext["Cant bury ai ...", "PLAIN DOWN"];}
 _victimName = _info select 1;
+
+player playMove "AinvPknlMstpSlayWrflDnon_medic";
 
 _list = [];
 {
