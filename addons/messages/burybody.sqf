@@ -3,9 +3,7 @@ _corpse = _this select 3;
 
 player removeAction _id;
 
-_bodycheck = _corpse iskindOf "Man";
-
-if (!_bodycheck)exitwith {
+if !(_corpse iskindOf "CAManBase")exitwith {
 	titletext[format["%1 is not a body ...",_corpse], "PLAIN DOWN"];
 };
 
@@ -13,28 +11,25 @@ if (alive _corpse)exitwith {
 	titletext[format["%1 is not dead yet ...",name _corpse], "PLAIN DOWN"];
 };
 
-if(({isPlayer _x} count (getPos vehicle player nearEntities [["AllVehicles"], 5])) > 1)exitwith{
-	titletext["ANTI-DUPE!\nCant bury body with another player within 5 meters","PLAIN DOWN"];
-};
-
-_position = getPosATL _corpse;
-_direction = getDir _corpse;
-
 _info = _corpse getVariable ["HALV_STUDY",[]];
 if(_info isEqualTo [])exitWith{titletext["Cant bury ai ...", "PLAIN DOWN"];};
 _victimName = _info select 1;
 
+_position = getPosATL _corpse;
+if(({isPlayer _x} count (_position nearEntities [["AllVehicles"], 5])) > 1)exitwith{
+	titletext["ANTI-DUPE!\nCant bury body with another player within 5 meters","PLAIN DOWN"];
+};
+
+_direction = getDir _corpse;
+
 player playMove "AinvPknlMstpSlayWrflDnon_medic";
 
 _list = [];
-{
-	if(_x != "")then{
-		_list pushBack _x;
-	};
-}forEach (assignedItems _corpse)+(primaryWeaponItems _corpse)+(handgunItems _corpse)+(secondaryWeaponItems _corpse)+(uniformItems _corpse)+(vestItems _corpse)+(backpackItems _corpse)+[primaryWeapon _corpse,handgunWeapon _corpse,secondaryWeapon _corpse,uniform _corpse,vest _corpse,backpack _corpse,headgear _corpse,goggles _corpse];
+{if(_x != "")then{_list pushBack _x;};}forEach (assignedItems _corpse)+(primaryWeaponItems _corpse)+(handgunItems _corpse)+(secondaryWeaponItems _corpse)+(uniformItems _corpse)+(vestItems _corpse)+(backpackItems _corpse)+[primaryWeapon _corpse,handgunWeapon _corpse,secondaryWeapon _corpse,uniform _corpse,vest _corpse,backpack _corpse,headgear _corpse,goggles _corpse];
 
 removeFromRemainsCollector[_corpse];
 _corpse setDammage 1;
+deleteVehicle _corpse;
 
 if(count _list > 0)then{
 	_box = createVehicle ["groundWeaponHolder", (getPosATL player), [], 0, "CAN_COLLIDE"];
@@ -72,8 +67,6 @@ if(count _list > 0)then{
 		deleteVehicle _WH2;
 	};
 };
-
-deleteVehicle _corpse;
 
 sleep 6;
 
