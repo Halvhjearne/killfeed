@@ -102,13 +102,21 @@ if(_killer != _player && (vehicle _killer) != (vehicle _player))then{
 				_killerName = gettext (configFile >> 'CfgVehicles' >> _killerType >> 'displayName');
 			};
 			if(_killerName == "Error: No vehicle")then{
-				_nearsappers = nearestObjects [_player,["Epoch_Sapper_F", "Epoch_SapperB_F"],7.5];
-				if(count _nearsappers > 0)then{
-					_nearestsapper = _nearsappers select 0;
-					_killerName = gettext (configFile >> 'CfgVehicles' >> (typeOf _nearestsapper) >> 'displayName');
+				_nearkillerobjs = nearestObjects [_player,["Epoch_Sapper_F","Epoch_SapperB_F","test_EmptyObjectForFireBig"],10];
+				if(count _nearkillerobjs > 0)exitWith{
+					_nearestkillerobj = _nearkillerobjs select 0;
+					_killerName = gettext (configFile >> 'CfgVehicles' >> (typeOf _nearestkillerobj) >> 'displayName');
 					_distance = 0;
-					_txt = "Explosion";
+					_txt = switch(typeOf _nearestkillerobj)do{
+						case "Epoch_Sapper_F":{"Explosion"};
+						case "Epoch_SapperB_F":{"Explosion"};
+						case "test_EmptyObjectForFireBig":{"Fire"};
+						default{"Explosion or Fire"};
+					};
 				};
+
+//				if(typeName _killer == "OBJECT")exitWith{};
+
 			};
 			_message = format["%1 was killed by a %2 with %3 from %4m",_victimName,_killerName,_txt,_distance];
 			_hint = _message;
