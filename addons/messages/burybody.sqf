@@ -1,3 +1,10 @@
+/*
+	a3 epoch killfeed burybody script
+	By Halv
+	
+	Copyright (C) 2015  Halvhjearne > README.md
+*/
+
 _id = _this select 2;
 _corpse = _this select 3;
 

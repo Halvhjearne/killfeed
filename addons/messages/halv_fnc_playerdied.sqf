@@ -1,6 +1,8 @@
 /*
 	a3 epoch killfeed server function
 	By Halv
+	
+	Copyright (C) 2015  Halvhjearne > README.md
 */
 #include "settings.sqf";
 private "_weapon";

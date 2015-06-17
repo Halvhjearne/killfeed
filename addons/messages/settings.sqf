@@ -1,3 +1,10 @@
+/*
+	a3 epoch killfeed settings
+	By Halv
+	
+	Copyright (C) 2015  Halvhjearne > README.md
+*/
+
 //this is if you want it in another folder than the default "addons\messages\", (always keep all files in same folder)
 _folder = "addons\messages\";
 //========================================

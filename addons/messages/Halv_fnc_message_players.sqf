@@ -1,6 +1,8 @@
 /*
 	a3 epoch killfeed message fuction
 	By Halv
+	
+	Copyright (C) 2015  Halvhjearne > README.md
 */
 _type = _this select 0;
 _message = _this select 1;

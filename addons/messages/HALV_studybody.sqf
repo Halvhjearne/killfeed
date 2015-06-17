@@ -1,6 +1,8 @@
 /*
 	a3 epoch killfeed studybody script
 	By Halv
+	
+	Copyright (C) 2015  Halvhjearne > README.md
 */
 
 _body = _this select 3;

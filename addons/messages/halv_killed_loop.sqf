@@ -1,6 +1,8 @@
 /*
 	a3 epoch killfeed server loop script
 	By Halv
+	
+	Copyright (C) 2015  Halvhjearne > README.md
 */
 diag_log "[KillFeed]: Server waiting for EPOCH_deadPlayer_PVS";
 waitUntil{!(isNil "EPOCH_deadPlayer_PVS")};
