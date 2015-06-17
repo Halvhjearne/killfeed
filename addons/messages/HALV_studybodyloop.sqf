@@ -7,11 +7,6 @@
 
 #include "settings.sqf";
 
-/*
-	//disabled HDevent for now, since it does not work with most antihacks, add this in run.sqf or security_checks.h for handle damage:
-	//(_this select 0) setVariable ['HALVWTD',(_this select 1),true];
-*/
-
 _HALV_studyaction = -1;
 _HALV_burybodyaction = -1;
 
@@ -39,3 +34,6 @@ while{alive player}do{
 	};
 	sleep 2;
 };
+
+waitUntil{alive player};
+execVM __FILE__;

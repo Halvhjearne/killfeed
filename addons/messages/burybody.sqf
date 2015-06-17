@@ -14,7 +14,7 @@ if !(_corpse iskindOf "CAManBase")exitwith {
 	titletext[format["%1 is not a body ...",_corpse], "PLAIN DOWN"];
 };
 
-if (alive _corpse)exitwith {
+if (alive _corpse || isPlayer _corpse)exitwith {
 	titletext[format["%1 is not dead yet ...",name _corpse], "PLAIN DOWN"];
 };
 
