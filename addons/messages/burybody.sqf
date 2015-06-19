@@ -35,7 +35,6 @@ _list = [];
 {if(_x != "")then{_list pushBack _x;};}forEach (assignedItems _corpse)+(primaryWeaponItems _corpse)+(handgunItems _corpse)+(secondaryWeaponItems _corpse)+(uniformItems _corpse)+(vestItems _corpse)+(backpackItems _corpse)+[primaryWeapon _corpse,handgunWeapon _corpse,secondaryWeapon _corpse,uniform _corpse,vest _corpse,backpack _corpse,headgear _corpse,goggles _corpse];
 
 removeFromRemainsCollector[_corpse];
-_corpse setDammage 1;
 deleteVehicle _corpse;
 
 if(count _list > 0)then{
