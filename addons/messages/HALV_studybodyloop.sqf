@@ -12,7 +12,7 @@ _HALV_burybodyaction = -1;
 
 while{alive player}do{
 	_ct = cursorTarget;
-	if(!isNull _ct && player == vehicle player)then{
+	if(!(isNull _ct) && (player isEqualTo (vehicle player)))then{
 		if(_ct isKindOf "CAManBase" && !alive _ct && player distance _ct < 4 && {_ct isKindOf _x}count["Epoch_Cloak_F","GreatWhite_F","Epoch_Sapper_F","Epoch_SapperB_F","PHANTOM","Animal"] < 1)then{
 			if(_HALV_burybodyaction < 0 && _enableburybody)then{
 				_HALV_burybodyaction = player addAction ["<t color='#0096ff'>Bury Body</t>",(_folder + "burybody.sqf"), _ct, -9, true, true, "", ""];

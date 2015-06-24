@@ -33,16 +33,16 @@ _timetxt = switch (true)do{
 
 _WTD = _body getVariable ["HALVWTD",""];
 _COD = switch(true)do{
-	case (toLower _WTD == ""):{"Overall Damage From a "};
-	case (toLower _WTD == "head_hit"):{"Head Shot From a "};
+	case (_WTD isEqualTo ""):{"Overall Damage From a "};
+	case ((toLower _WTD) isEqualTo "head_hit"):{"Head Shot From a "};
 	case (toLower _WTD in ["body","hands","legs"]):{"Body Hits From a "};
 	default{"Unknown hits From a "};
 };
 
 //hintSilent _hint;
 
-if(_killerName != _victimName)then{
-	titleText [format["The Name was %1\nCause of death: %2 %3\n%4",_victimName,_COD,_txt,_timetxt],"PLAIN DOWN"];
-}else{
+if (_killerName isEqualTo _victimName)then{
 	titleText [format["The Name was %1\nCause of death: Suicide",_victimName],"PLAIN DOWN"];
+}else{
+	titleText [format["The Name was %1\nCause of death: %2 %3\n%4",_victimName,_COD,_txt,_timetxt],"PLAIN DOWN"];
 };

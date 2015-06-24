@@ -32,7 +32,7 @@ _direction = getDir _corpse;
 player playMove "AinvPknlMstpSlayWrflDnon_medic";
 
 _list = [];
-{if(_x != "")then{_list pushBack _x;};}forEach (assignedItems _corpse)+(primaryWeaponItems _corpse)+(handgunItems _corpse)+(secondaryWeaponItems _corpse)+(uniformItems _corpse)+(vestItems _corpse)+(backpackItems _corpse)+[primaryWeapon _corpse,handgunWeapon _corpse,secondaryWeapon _corpse,uniform _corpse,vest _corpse,backpack _corpse,headgear _corpse,goggles _corpse];
+{if !(_x isEqualTo "")then{_list pushBack _x;};}forEach (assignedItems _corpse)+(primaryWeaponItems _corpse)+(handgunItems _corpse)+(secondaryWeaponItems _corpse)+(uniformItems _corpse)+(vestItems _corpse)+(backpackItems _corpse)+[primaryWeapon _corpse,handgunWeapon _corpse,secondaryWeapon _corpse,uniform _corpse,vest _corpse,backpack _corpse,headgear _corpse,goggles _corpse];
 
 removeFromRemainsCollector[_corpse];
 deleteVehicle _corpse;
@@ -55,7 +55,7 @@ if(count _list > 0)then{
 			case (isClass (configFile >> "cfgMagazines" >> _x)): {
 				_box addMagazineCargoGlobal [_x,1];
 			};
-			case ((getText(configFile >> "cfgVehicles" >> _x >>  "vehicleClass")) == "Backpacks"): {
+			case ((getText(configFile >> "cfgVehicles" >> _x >>  "vehicleClass")) isEqualTo "Backpacks"): {
 				_box addBackpackCargoGlobal [_x,1];
 			};
 		};

@@ -21,23 +21,11 @@ _victimName = name _player;
 
 _distance = _player distance _killer;
 
-_weapon = weaponState _killer;
-if !(isNil "_weapon") then{
-	if (_weapon select 0 == "Throw") then 
-	{
-		_weapon = _weapon select 3;
-	}
-	else
-	{
-		_weapon = _weapon select 0;
-	};
-}else{
-	_weapon = currentWeapon _killer;
-};
+_weapon = currentWeapon _killer;
 
 _infostudy = [_killerName,_victimName,serverTime];
 
-if(_killer != _player && (vehicle _killer) != (vehicle _player))then{
+if !(_killer isEqualTo _player)then{
 	//if killer is not vehicle
 	_txt = (gettext (configFile >> 'cfgWeapons' >> _weapon >> 'displayName'));
 	_pic = (gettext (configFile >> 'cfgWeapons' >> _weapon >> 'picture'));
@@ -48,7 +36,7 @@ if(_killer != _player && (vehicle _killer) != (vehicle _player))then{
 		if(_vehicleKillerType isKindOf _x)exitWith{
 			_pic = (gettext (configFile >> 'CfgVehicles' >> _vehicleKillerType >> 'picture'));
 			//and if he was in a driver position of the vehicle, we get vehicle displayName aswell
-			if(_killer == driver(vehicle _killer))then{
+			if(_killer isEqualTo (driver(vehicle _killer)))then{
 				_txt = (gettext (configFile >> 'CfgVehicles' >> _vehicleKillerType >> 'displayName'));
 			};
 		};
@@ -100,10 +88,10 @@ if(_killer != _player && (vehicle _killer) != (vehicle _player))then{
 		if(_HALV_KillFeed_AI)then{
 			//killer is not a player
 			_killerType = typeOf _killer;
-			if(gettext (configFile >> 'CfgVehicles' >> _killerType >> 'displayName') != "")then{
+			if !((gettext (configFile >> 'CfgVehicles' >> _killerType >> 'displayName')) isEqualTo "")then{
 				_killerName = gettext (configFile >> 'CfgVehicles' >> _killerType >> 'displayName');
 			};
-			if(_killerName == "Error: No vehicle")then{
+			if(_killerName isEqualTo "Error: No vehicle")then{
 				_nearkillerobjs = nearestObjects [_player,["Epoch_Sapper_F","Epoch_SapperB_F","test_EmptyObjectForFireBig"],10];
 				if(count _nearkillerobjs > 0)exitWith{
 					_nearestkillerobj = _nearkillerobjs select 0;
@@ -117,7 +105,7 @@ if(_killer != _player && (vehicle _killer) != (vehicle _player))then{
 					};
 				};
 
-//				if(typeName _killer == "OBJECT")exitWith{};
+//				if(typeName _killer isEqualTo "OBJECT")exitWith{};
 
 			};
 			_message = format["%1 was killed by a %2 with %3 from %4m",_victimName,_killerName,_txt,_distance];
@@ -138,21 +126,21 @@ if(_killer != _player && (vehicle _killer) != (vehicle _player))then{
 
 _player setVariable ["HALV_STUDY",_infostudy, true];
 
-if(_loc_message == "")then{_loc_message = format["[KillFeed]: PKILL: %1 was killed by %2 with %3",_player,_killer,_weapon];};
+if(_loc_message isEqualTo "")then{_loc_message = format["[KillFeed]: PKILL: %1 was killed by %2 with %3",_player,_killer,_weapon];};
 
 diag_log _loc_message;
 
-{
-	if(_x select 0) then {
-		if(_message != "")then{
+if !(_message isEqualTo "")then{
+	{
+		if(_x select 0) then {
 			HalvPV_player_message = (_x select 1);
 			publicVariable "HalvPV_player_message";
 		};
-	};
-}forEach[
-	[_HALV_KillFeedhint,["hint", _hint]],[_HALV_KillFeedhintSilent,["hintSilent", _hint]],[_HALV_KillFeedsystemChat,["systemChat", _message]],
-	[_HALV_KillFeeddynamictext,["dynamictext", _dyntxt]],[_HALV_KillFeedsideChat,["sideChat", _message, _killer]],
-	[_HALV_KillFeedglobalChat,["globalChat", _message, _killer]],[_HALV_KillFeedcutText,["cutText", [_message, "PLAIN DOWN"]]],
-	[_HALV_KillFeedtitleText,["titleText", [_message, "PLAIN DOWN"]]]
-];
+	}forEach[
+		[_HALV_KillFeedhint,["hint", _hint]],[_HALV_KillFeedhintSilent,["hintSilent", _hint]],[_HALV_KillFeedsystemChat,["systemChat", _message]],
+		[_HALV_KillFeeddynamictext,["dynamictext", _dyntxt]],[_HALV_KillFeedsideChat,["sideChat", _message, _killer]],
+		[_HALV_KillFeedglobalChat,["globalChat", _message, _killer]],[_HALV_KillFeedcutText,["cutText", [_message, "PLAIN DOWN"]]],
+		[_HALV_KillFeedtitleText,["titleText", [_message, "PLAIN DOWN"]]]
+	];
+};
 
