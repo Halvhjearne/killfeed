@@ -118,10 +118,10 @@ if !(_killer isEqualTo _player)then{
 	};
 }else{
 	//if player is killer
-	_message = format["%1 Killed himself ...",name _player];
+	_message = format["%1 committed suicide ...",name _player];
 	_hint = format["<t align='Center'shadow='2'>%1</t>",_message];
 	_dyntxt = format["<t size='0.70'align='left'shadow='1'>%1</t>",_message];
-	_loc_message = format["[KillFeed]: PKILL: %1 killed himself", _victimName];
+	_loc_message = format["[KillFeed]: PKILL: %1 committed suicide | '%2' - '%3'", _victimName,_killer,_weapon];
 };
 
 _player setVariable ["HALV_STUDY",_infostudy, true];
