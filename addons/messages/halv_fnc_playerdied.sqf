@@ -25,7 +25,7 @@ _weapon = currentWeapon _killer;
 
 _infostudy = [_killerName,_victimName,serverTime];
 
-if !(_killer isEqualTo _player)then{
+if (!(_killer isEqualTo _player) && !((vehicle _killer) isEqualTo (vehicle _player)))then{
 	//if killer is not vehicle
 	_txt = (gettext (configFile >> 'cfgWeapons' >> _weapon >> 'displayName'));
 	_pic = (gettext (configFile >> 'cfgWeapons' >> _weapon >> 'picture'));
@@ -118,7 +118,7 @@ if !(_killer isEqualTo _player)then{
 	};
 }else{
 	//if player is killer
-	_message = format["%1 committed suicide ...",name _player];
+	_message = format["%1 Committed Suicide ...",name _player];
 	_hint = format["<t align='Center'shadow='2'>%1</t>",_message];
 	_dyntxt = format["<t size='0.70'align='left'shadow='1'>%1</t>",_message];
 	_loc_message = format["[KillFeed]: PKILL: %1 committed suicide | '%2' - '%3'", _victimName,_killer,_weapon];
